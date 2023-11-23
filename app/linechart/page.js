@@ -1,60 +1,122 @@
 "use client";
+import { Line } from "react-chartjs-2";
 
-import { useEffect } from "react"
-import { Chart, LineController, CategoryScale, LinearScale, PointElement, LineElement} from "chart.js";
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale, // x axis
+  LinearScale, // y axis
+  PointElement,
+  Legend,
+  Tooltip,
+  Filler,
+} from "chart.js";
 
-function Example() {
-    
-    Chart.register(LineController, CategoryScale, LinearScale, PointElement, LineElement);
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Legend,
+  Tooltip,
+  Filler
+);
 
-    useEffect(() => {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                datasets: [{
-                    data: [86, 114, 106, 106, 107, 111, 133],
-                    label: "Applied",
-                    borderColor: "#3e95cd",
-                    backgroundColor: "#7bb6dd",
-                    fill: false,
-                }, {
-                    data: [70, 90, 44, 60, 83, 90, 100],
-                    label: "Accepted",
-                    borderColor: "#3cba9f",
-                    backgroundColor: "#71d1bd",
-                    fill: false,
-                }, {
-                    data: [10, 21, 60, 44, 17, 21, 17],
-                    label: "Pending",
-                    borderColor: "#ffa500",
-                    backgroundColor: "#ffc04d",
-                    fill: false,
-                }, {
-                    data: [6, 3, 2, 2, 7, 0, 16],
-                    label: "Rejected",
-                    borderColor: "#c45850",
-                    backgroundColor: "#d78f89",
-                    fill: false,
-                }
-                ]
-            },
-        });
-    }, [])
+const experimentData = [
+  { trial: "1", time: 2.41 },
+  { trial: "2", time: 2.88 },
+  { trial: "3", time: 2.56 },
+  { trial: "4", time: 2.53 },
+  { trial: "5", time: 2.36 },
+  { trial: "6", time: 2.81 },
+];
 
+function LineChart() {
+  const data = {
+    labels: experimentData.map((data) => data.trial),
+    datasets: [
+      {
+        label: "Revenue",
+        data: experimentData.map((data) => data.time),
+        borderColor: "#cb0c9f",
+        borderWidth: 3,
+        pointBorderColor: "#cb0c9f",
+        pointBorderWidth: 3,
+        tension: 0.5,
+        fill: true,
+        backgroundColor: (context) => {
+          const ctx = context.chart.ctx;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+          gradient.addColorStop(0, "#f797e1");
+          gradient.addColorStop(1, "white");
+          return gradient;
+        },
+      },
+    ],
+  };
 
-    return (
-        <>
-            {/* line chart */}
-            <h1 className="w-[110px] mx-auto mt-10 text-xl font-semibold capitalize ">line Chart</h1>
-            <div className="w-[1100px] h-screen flex mx-auto my-auto">
-              <div className='border border-gray-400 pt-0 rounded-xl  w-full h-fit my-auto  shadow-xl'>
-                <canvas id='myChart'></canvas>
-              </div>
-            </div>
-        </>
-    )
+  const options = {
+    plugins: {
+      legend: true,
+    },
+    responsive: true,
+    scales: {
+      y: {
+        ticks: {
+          font: {
+            size: 17,
+            weight: "bold",
+          },
+        },
+        title: {
+          display: true,
+          text: "Sales",
+          padding: {
+            bottom: 10,
+          },
+          font: {
+            size: 30,
+            style: "italic",
+            family: "Arial",
+          },
+        },
+        min: 0,
+      },
+      x: {
+        ticks: {
+          font: {
+            size: 17,
+            weight: "bold",
+          },
+        },
+        title: {
+          display: true,
+          text: "Month",
+          padding: {
+            top: 10,
+          },
+          font: {
+            size: 30,
+            style: "italic",
+            family: "Arial",
+          },
+        },
+      },
+    },
+  };
+
+  return (
+    <div>
+      <h1 className="font-bold text-3xl text-center mt-10">
+        Data Visualizer + Calculator
+      </h1>
+      <div
+        className="w-[900px] h-[400px] p-[20px] cursor-pointer border border-black ml-auto mr-auto"
+      >
+        <Line data={data} options={options}></Line>
+      </div>
+    </div>
+  );
 }
 
-export default Example;
+export default LineChart;
