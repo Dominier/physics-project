@@ -31,6 +31,9 @@ ChartJS.register(
 function LineChart() {
    /* TABLE INPUT CODE */
   const [formData, setFormData] = useState({
+    object: '',
+    description: '',
+    
     x_axis: '',
     x_1: '',
     x_2: '',
@@ -64,19 +67,19 @@ function LineChart() {
 
   /* GRAPH CODE */
   const experimentData = [
-    { trial: "1", time: 2.41 },
-    { trial: "2", time: 2.88 },
-    { trial: "3", time: 2.56 },
-    { trial: "4", time: 2.53 },
-    { trial: "5", time: 2.36 },
-    { trial: "6", time: 2.81 },
+    { trial: parseFloat(formData.x_1), time: parseFloat(formData.y_1) },
+    { trial: parseFloat(formData.x_2), time: parseFloat(formData.y_2) },
+    { trial: parseFloat(formData.x_3), time: parseFloat(formData.y_3) },
+    { trial: parseFloat(formData.x_4), time: parseFloat(formData.y_4) },
+    { trial: parseFloat(formData.x_5), time: parseFloat(formData.y_5) },
+    { trial: parseFloat(formData.x_6), time: parseFloat(formData.y_6) },
   ];
 
   const data = {
     labels: experimentData.map((data) => data.trial),
     datasets: [
       {
-        label: "Car A",
+        label: formData.object,
         data: experimentData.map((data) => data.time),
         borderColor: "#cb0c9f",
         borderWidth: 3,
@@ -110,7 +113,7 @@ function LineChart() {
           },
           title: {
             display: true,
-            text: "Time (s)",
+            text: formData.y_axis,
             padding: {
               bottom: 10,
             },
@@ -131,7 +134,7 @@ function LineChart() {
           },
           title: {
             display: true,
-            text: "Trial",
+            text: formData.x_axis,
             padding: {
               top: 10,
             },
@@ -162,10 +165,35 @@ function LineChart() {
         <Line data={data} options={options}></Line>
         </div>
 
+        {/* Table */}
         <div className="flex col-auto p-5">
                 <div>
                   <h1 className="">Table</h1>
                   <form onSubmit={handleSubmit} className="">
+                      {/* Get information */}
+                      <div>
+                        <label>
+                          <input
+                              type="text"
+                              name="object"
+                              value={formData.object}
+                              onChange={handleChange}
+                              placeholder="Name of Object"
+                              className="border border-black w-[25%]"
+                          />
+                        </label>
+                        <label>
+                          <input
+                              type="text"
+                              name="description"
+                              value={formData.description}
+                              onChange={handleChange}
+                              placeholder="Short Description"
+                              className="border border-black w-[25%]"
+                          />
+                        </label>
+                      </div>
+                      
                       {/* X-Axis Inputs */}
                       <div className="">
                           <label>

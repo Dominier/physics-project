@@ -9,7 +9,7 @@ const DisplayParse = ({ submittedValue }) => {
         <div className="pt-5">
             <h2>Display Parse Component</h2>
             <p>Parsed x-axis: {parsedData.x_axis}</p>
-            <p>Parsed y-axis Value: {parsedData.y_axis}</p>
+            <p>Parsed y-axis: {parsedData.y_axis}</p>
 
             <p>Parsed X1 Value: {parsedData.x_1}</p>
             <p>Parsed X2 Value: {parsedData.x_2}</p>
