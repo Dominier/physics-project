@@ -1,4 +1,5 @@
 "use client";
+
 import { Line } from "react-chartjs-2";
 
 import {
@@ -11,6 +12,8 @@ import {
   Tooltip,
   Filler,
 } from "chart.js";
+
+import InputTable from "@/components/input-table";
 
 ChartJS.register(
   LineElement,
@@ -55,59 +58,62 @@ function LineChart() {
     ],
   };
 
-  const options = {
-    plugins: {
-      legend: true,
-    },
-    responsive: true,
-    scales: {
-      y: {
-        ticks: {
-          font: {
-            size: 17,
-            weight: "bold",
-          },
-        },
-        title: {
-          display: true,
-          text: "Time (s)",
-          padding: {
-            bottom: 10,
-          },
-          font: {
-            size: 30,
-            style: "italic",
-            family: "Arial",
-          },
-        },
-        min: 0,
+    const options = {
+      plugins: {
+        legend: true,
       },
-      x: {
-        ticks: {
-          font: {
-            size: 17,
-            weight: "bold",
+      responsive: true,
+      scales: {
+        y: {
+          ticks: {
+            font: {
+              size: 17,
+              weight: "bold",
+            },
           },
+          title: {
+            display: true,
+            text: "Time (s)",
+            padding: {
+              bottom: 10,
+            },
+            font: {
+              size: 30,
+              style: "italic",
+              family: "Arial",
+            },
+          },
+          min: 0,
         },
-        title: {
-          display: true,
-          text: "Trial",
-          padding: {
-            top: 10,
+        x: {
+          ticks: {
+            font: {
+              size: 17,
+              weight: "bold",
+            },
           },
-          font: {
-            size: 30,
-            style: "italic",
-            family: "Arial",
+          title: {
+            display: true,
+            text: "Trial",
+            padding: {
+              top: 10,
+            },
+            font: {
+              size: 30,
+              style: "italic",
+              family: "Arial",
+            },
           },
         },
       },
-    },
-  };
+    };
 
     var generatedSummary = [
         { summary: "The provided data represents the time it takes for Car A to travel down a ramp in six different trials. Each trial is conducted independently, and the time (in seconds) for the car to complete its descent is recorded. The data is organized in a table, with each row corresponding to a specific trial, and each column representing a different run of the experiment. The trials are numbered from 1 to 6."},
     ]
+
+    const velocityData = velocity();
+
   return (
     <div>
         <h1 className="font-bold text-3xl text-center mt-10">
@@ -122,33 +128,7 @@ function LineChart() {
         </div>
 
         <div className="flex col-auto p-5">
-            <div className="border w-[45%]">
-                <table className="table-fixed border-collapse w-[80%] m-[20px] text-center">
-                    <thead>
-                      <tr className="border border-black">
-                          <td className="border border-black">Trial</td>
-                          <td className="border border-black">1</td>
-                          <td className="border border-black">2</td>
-                          <td className="border border-black">3</td>
-                          <td className="border border-black">4</td>
-                          <td className="border border-black">5</td>
-                          <td className="border border-black">6</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border border-black">
-                          <td className="border border-black">Time (s)</td>
-                          <td className="border border-black">2.5</td>
-                          <td className="border border-black">3.6</td>
-                          <td className="border border-black">2.1</td>
-                          <td className="border border-black">2.2</td>
-                          <td className="border border-black">2.36</td>
-                          <td className="border border-black">2.81</td>
-                      </tr>
-                  </tbody>
-                </table>
-                <button className="border bg-green-700 text-white w-[70%]">Generate</button>
-            </div>
+            <InputTable />
 
             <div className="border w-[45%] ml-auto">
                 <h3 className="font-bold">Generated Summary</h3>
@@ -158,7 +138,6 @@ function LineChart() {
         </div>
         <div className="text-center">
             <h3 className="font-bold">Calculations</h3>
-            <p>Velocity:</p>
             <p>Acceleration:</p>
         </div>
 

@@ -5,8 +5,6 @@ import { parseSubmittedValue } from "../utils/parseSubmittedValue";
 const DisplayParse = ({ submittedValue }) => {
     const parsedData = parseSubmittedValue(submittedValue);
 
-    const totalX = parseFloat(parsedData.x_1) + parseFloat(parsedData.x_2);
-
     return (
         <div className="pt-5">
             <h2>Display Parse Component</h2>
@@ -26,8 +24,6 @@ const DisplayParse = ({ submittedValue }) => {
             <p>Parsed Y4 Value: {parsedData.y_4}</p>
             <p>Parsed Y5 Value: {parsedData.y_5}</p>
             <p>Parsed Y6 Value: {parsedData.y_6}</p>
-
-            <p>Total of X1 and X2: {totalX}</p>
         </div>
     );
 };
