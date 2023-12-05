@@ -1,6 +1,7 @@
 "use client";
 
 import { Line } from "react-chartjs-2";
+import { useState } from "react";
 
 import {
   Chart as ChartJS,
@@ -14,6 +15,8 @@ import {
 } from "chart.js";
 
 import InputTable from "@/components/input-table";
+import Calculations from "@/components/calculations";
+import DisplayParse from "@/components/displayParse";
 
 ChartJS.register(
   LineElement,
@@ -25,16 +28,50 @@ ChartJS.register(
   Filler
 );
 
-const experimentData = [
-  { trial: "1", time: 2.41 },
-  { trial: "2", time: 2.88 },
-  { trial: "3", time: 2.56 },
-  { trial: "4", time: 2.53 },
-  { trial: "5", time: 2.36 },
-  { trial: "6", time: 2.81 },
-];
-
 function LineChart() {
+   /* TABLE INPUT CODE */
+  const [formData, setFormData] = useState({
+    x_axis: '',
+    x_1: '',
+    x_2: '',
+    x_3: '',
+    x_4: '',
+    x_5: '',
+    x_6: '',
+
+    y_axis: '',
+    y_1: '',
+    y_2: '',
+    y_3: '',
+    y_4: '',
+    y_5: '',
+    y_6: '',
+  });
+  const [submittedValue, setSubmittedValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedValue(JSON.stringify(formData)); // Convert formData to JSON for display
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  /* GRAPH CODE */
+  const experimentData = [
+    { trial: "1", time: 2.41 },
+    { trial: "2", time: 2.88 },
+    { trial: "3", time: 2.56 },
+    { trial: "4", time: 2.53 },
+    { trial: "5", time: 2.36 },
+    { trial: "6", time: 2.81 },
+  ];
+
   const data = {
     labels: experimentData.map((data) => data.trial),
     datasets: [
@@ -112,8 +149,6 @@ function LineChart() {
         { summary: "The provided data represents the time it takes for Car A to travel down a ramp in six different trials. Each trial is conducted independently, and the time (in seconds) for the car to complete its descent is recorded. The data is organized in a table, with each row corresponding to a specific trial, and each column representing a different run of the experiment. The trials are numbered from 1 to 6."},
     ]
 
-    const velocityData = velocity();
-
   return (
     <div>
         <h1 className="font-bold text-3xl text-center mt-10">
@@ -128,19 +163,165 @@ function LineChart() {
         </div>
 
         <div className="flex col-auto p-5">
-            <InputTable />
+                <div>
+                  <h1 className="">Table</h1>
+                  <form onSubmit={handleSubmit} className="">
+                      {/* X-Axis Inputs */}
+                      <div className="">
+                          <label>
+                          <input
+                              type="text"
+                              name="x_axis"
+                              value={formData.x_axis}
+                              onChange={handleChange}
+                              placeholder="Enter X axis"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="x_1"
+                              value={formData.x_1}
+                              onChange={handleChange}
+                              placeholder="Enter X1 here"
+                              className="border border-black w-[10%]"
+                          />
+                          <input
+                              type="number"
+                              name="x_2"
+                              value={formData.x_2}
+                              onChange={handleChange}
+                              placeholder="Enter X2 here"
+                              className="border border-black w-[10%]"
+                          />
+                          <input
+                              type="number"
+                              name="x_3"
+                              value={formData.x_3}
+                              onChange={handleChange}
+                              placeholder="Enter X3 here"
+                              className="border border-black w-[10%]"
+                          />
+                          <input
+                              type="number"
+                              name="x_4"
+                              value={formData.x_4}
+                              onChange={handleChange}
+                              placeholder="Enter X4 here"
+                              className="border border-black w-[10%]"
+                          />
+                          <input
+                              type="number"
+                              name="x_5"
+                              value={formData.x_5}
+                              onChange={handleChange}
+                              placeholder="Enter X5 here"
+                              className="border border-black w-[10%]"
+                          />
+                          <input
+                              type="number"
+                              name="x_6"
+                              value={formData.x_6}
+                              onChange={handleChange}
+                              placeholder="Enter X6 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                      </div>
+                      
+                      {/* Y-Axis Inputs */}
+                      <div className="block">
+                          <label>
+                          <input
+                              type="text"
+                              name="y_axis"
+                              value={formData.y_axis}
+                              onChange={handleChange}
+                              placeholder="Enter Y axis"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="y_1"
+                              value={formData.y_1}
+                              onChange={handleChange}
+                              placeholder="Enter Y1 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="y_2"
+                              value={formData.y_2}
+                              onChange={handleChange}
+                              placeholder="Enter Y2 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="y_3"
+                              value={formData.y_3}
+                              onChange={handleChange}
+                              placeholder="Enter Y3 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="y_4"
+                              value={formData.y_4}
+                              onChange={handleChange}
+                              placeholder="Enter Y4 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="y_5"
+                              value={formData.y_5}
+                              onChange={handleChange}
+                              placeholder="Enter Y5 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                          <label>
+                          <input
+                              type="number"
+                              name="y_6"
+                              value={formData.y_6}
+                              onChange={handleChange}
+                              placeholder="Enter Y6 here"
+                              className="border border-black w-[10%]"
+                          />
+                          </label>
+                      </div>
+
+                      {/* Submit Button */}
+                      <button type="submit" className="border border-black p-2 ml-auto mr-auto rounded-xl block">
+                          Submit
+                      </button>
+
+                  </form>
+              {/* Testing component that sends submittedValue to get parsed then display it! */}
+              <DisplayParse submittedValue={submittedValue} />
+            </div>
 
             <div className="border w-[45%] ml-auto">
                 <h3 className="font-bold">Generated Summary</h3>
                 <p>{generatedSummary[0].summary}</p>
             </div>
-
         </div>
         <div className="text-center">
-            <h3 className="font-bold">Calculations</h3>
-            <p>Acceleration:</p>
+          <Calculations submittedValue={submittedValue} />
         </div>
-
     </div>
   );
 }
