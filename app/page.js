@@ -18,9 +18,6 @@ export default function Home() {
         <div className="border border-red-600 text-center">Projectile Motion</div>
         {velocityTest}
       </div>
-
-      <InputTable />
-
     </div>
   )
 }
