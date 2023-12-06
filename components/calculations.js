@@ -30,8 +30,8 @@ const Calculations = ({ submittedValue }) => {
     const APIBody = {
         "model": "gpt-4-1106-preview",
         "messages": [
-            {"role": "system", "content": "You are a helpful assistant that generate lab reports based on the information you are given."},
-            {"role": "user", "content": `Generate a lab report with the following short description: ${description}. Create a title, objective, and conclusion.`},
+            {"role": "system", "content": "You are a helpful assistant, do the best with the information you are given."},
+            {"role": "user", "content": `Generate a lab report with the following short description: ${parsedData.description}. Create a title, objective, and conclusion.`},
         ],
         "temperature": 0.8,
         "top_p": 1
