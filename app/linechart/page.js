@@ -14,7 +14,6 @@ import {
   Filler,
 } from "chart.js";
 
-import InputTable from "@/components/input-table";
 import Calculations from "@/components/calculations";
 import DisplayParse from "@/components/displayParse";
 

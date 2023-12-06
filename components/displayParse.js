@@ -24,6 +24,7 @@ const DisplayParse = ({ submittedValue }) => {
             <p>Parsed Y4 Value: {parsedData.y_4}</p>
             <p>Parsed Y5 Value: {parsedData.y_5}</p>
             <p>Parsed Y6 Value: {parsedData.y_6}</p>
+            <p>Parsed description: {parsedData.description}</p>
         </div>
     );
 };

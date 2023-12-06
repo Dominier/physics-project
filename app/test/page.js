@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 
-import InputTable from '@/components/input-table';
 import DisplayParse from "@/components/displayParse";
 import Calculations from "@/components/calculations";
+import TestingAI from "@/components/testingai";
 
 const TestPage = () => {
     const [formData, setFormData] = useState({
+        description: '',
+        
         x_axis: '',
         x_1: '',
         x_2: '',
@@ -41,145 +43,18 @@ const TestPage = () => {
 
   return (
         <div>
-            <h1 className="">Table</h1>
+            <h1 className="">Form</h1>
             <form onSubmit={handleSubmit} className="">
-                {/* X-Axis Inputs */}
-                <div className="">
-                    <label>
+                <label>
                     <input
                         type="text"
-                        name="x_axis"
-                        value={formData.x_axis}
+                        name="description"
+                        value={formData.description}
                         onChange={handleChange}
-                        placeholder="Enter X axis"
-                        className="border border-black w-[10%]"
+                        placeholder="Short Description"
+                        className="border border-black w-[25%]"
                     />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="x_1"
-                        value={formData.x_1}
-                        onChange={handleChange}
-                        placeholder="Enter X1 here"
-                        className="border border-black w-[10%]"
-                    />
-                    <input
-                        type="number"
-                        name="x_2"
-                        value={formData.x_2}
-                        onChange={handleChange}
-                        placeholder="Enter X2 here"
-                        className="border border-black w-[10%]"
-                    />
-                    <input
-                        type="number"
-                        name="x_3"
-                        value={formData.x_3}
-                        onChange={handleChange}
-                        placeholder="Enter X3 here"
-                        className="border border-black w-[10%]"
-                    />
-                    <input
-                        type="number"
-                        name="x_4"
-                        value={formData.x_4}
-                        onChange={handleChange}
-                        placeholder="Enter X4 here"
-                        className="border border-black w-[10%]"
-                    />
-                    <input
-                        type="number"
-                        name="x_5"
-                        value={formData.x_5}
-                        onChange={handleChange}
-                        placeholder="Enter X5 here"
-                        className="border border-black w-[10%]"
-                    />
-                    <input
-                        type="number"
-                        name="x_6"
-                        value={formData.x_6}
-                        onChange={handleChange}
-                        placeholder="Enter X6 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                </div>
-                
-                {/* Y-Axis Inputs */}
-                <div className="block">
-                    <label>
-                    <input
-                        type="text"
-                        name="y_axis"
-                        value={formData.y_axis}
-                        onChange={handleChange}
-                        placeholder="Enter Y axis"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="y_1"
-                        value={formData.y_1}
-                        onChange={handleChange}
-                        placeholder="Enter Y1 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="y_2"
-                        value={formData.y_2}
-                        onChange={handleChange}
-                        placeholder="Enter Y2 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="y_3"
-                        value={formData.y_3}
-                        onChange={handleChange}
-                        placeholder="Enter Y3 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="y_4"
-                        value={formData.y_4}
-                        onChange={handleChange}
-                        placeholder="Enter Y4 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="y_5"
-                        value={formData.y_5}
-                        onChange={handleChange}
-                        placeholder="Enter Y5 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                    <label>
-                    <input
-                        type="number"
-                        name="y_6"
-                        value={formData.y_6}
-                        onChange={handleChange}
-                        placeholder="Enter Y6 here"
-                        className="border border-black w-[10%]"
-                    />
-                    </label>
-                </div>
+                </label>
 
                 {/* Submit Button */}
                 <button type="submit" className="border border-black p-2 ml-auto mr-auto rounded-xl block">
@@ -190,6 +65,7 @@ const TestPage = () => {
         {/* Testing component that sends submittedValue to get parsed then display it! */}
         <DisplayParse submittedValue={submittedValue} />
         <Calculations submittedValue={submittedValue} />
+        <TestingAI />
     </div>
   )
 }
