@@ -1,5 +1,6 @@
 /* CALCULATIONS AND AI */
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 import { parseSubmittedValue } from "../utils/parseSubmittedValue";
 
@@ -20,8 +21,6 @@ const Calculations = ({ submittedValue }) => {
   // Calculate average velocity
   const velocity = totalDisplacement / totalTime;
 
-
-  const [description, setDescription] = useState("");
   const [report, setReport] = useState(""); // some words
 
   async function callOpenAIAPI() {
@@ -59,27 +58,21 @@ const Calculations = ({ submittedValue }) => {
 
 
   return (
-    <div className="pt-5">
+    <div className="pt-3">
       <h2 className="font-bold">Calculations</h2>
       <p>Average Velocity: {velocity} m/s</p>
 
-      <h3 className="font-bold">TESTING</h3>
-            <div>
-                <textarea
-                    onChange={(e) => setDescription(e.target.value)}    
-                    placeholder="Paste your short summary here"
-                    cols={30} 
-                    rows={10} 
-                    className="border border-black" 
-                />
-            </div>
-            <div>
-                <button onClick={callOpenAIAPI} className="border border-black p-2" >Generate from AI</button>
-            </div>
-            {report !== "" ? 
-                <h3>lab report: {report}</h3>
-                : null    
-            }
+      <div>
+          <button onClick={callOpenAIAPI} className="border border-black rounded-lg p-2 mt-2" >Generate Summary</button>
+      </div>
+
+      {report !== "" ? 
+          <div className="pt-2">
+            <h3 className="font-bold">Lab report: <br /> </h3>
+            <ReactMarkdown children={report} />
+          </div>
+          : null    
+      }
 
     </div>
   );

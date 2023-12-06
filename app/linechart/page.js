@@ -147,10 +147,6 @@ function LineChart() {
       },
     };
 
-    var generatedSummary = [
-        { summary: "The provided data represents the time it takes for Car A to travel down a ramp in six different trials. Each trial is conducted independently, and the time (in seconds) for the car to complete its descent is recorded. The data is organized in a table, with each row corresponding to a specific trial, and each column representing a different run of the experiment. The trials are numbered from 1 to 6."},
-    ]
-
   return (
     <div>
         <h1 className="font-bold text-3xl text-center mt-10">
@@ -165,12 +161,12 @@ function LineChart() {
         </div>
 
         {/* Table */}
-        <div className="flex col-auto p-5">
+        <div className="p-5 ml-auto mr-auto">
                 <div>
-                  <h1 className="">Table</h1>
-                  <form onSubmit={handleSubmit} className="">
+                  <h1 className="font-bold text-lg text-center">Input Data</h1>
+                  <form onSubmit={handleSubmit} className="text-center">
                       {/* Get information */}
-                      <div>
+                      <div className="pb-4">
                         <label>
                           <input
                               type="text"
@@ -178,7 +174,7 @@ function LineChart() {
                               value={formData.object}
                               onChange={handleChange}
                               placeholder="Name of Object"
-                              className="border border-black w-[25%]"
+                              className="border border-black w-[25%] mr-4 text-center"
                           />
                         </label>
                         <label>
@@ -188,7 +184,7 @@ function LineChart() {
                               value={formData.description}
                               onChange={handleChange}
                               placeholder="Short Description"
-                              className="border border-black w-[25%]"
+                              className="border border-black w-[25%] text-center"
                           />
                         </label>
                       </div>
@@ -202,7 +198,7 @@ function LineChart() {
                               value={formData.x_axis}
                               onChange={handleChange}
                               placeholder="Enter X axis"
-                              className="border border-black w-[10%]"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -211,48 +207,48 @@ function LineChart() {
                               name="x_1"
                               value={formData.x_1}
                               onChange={handleChange}
-                              placeholder="Enter X1 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter X1"
+                              className="border border-black w-[10%] text-center"
                           />
                           <input
                               type="number"
                               name="x_2"
                               value={formData.x_2}
                               onChange={handleChange}
-                              placeholder="Enter X2 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter X2"
+                              className="border border-black w-[10%] text-center"
                           />
                           <input
                               type="number"
                               name="x_3"
                               value={formData.x_3}
                               onChange={handleChange}
-                              placeholder="Enter X3 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter X3"
+                              className="border border-black w-[10%] text-center"
                           />
                           <input
                               type="number"
                               name="x_4"
                               value={formData.x_4}
                               onChange={handleChange}
-                              placeholder="Enter X4 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter X4"
+                              className="border border-black w-[10%] text-center"
                           />
                           <input
                               type="number"
                               name="x_5"
                               value={formData.x_5}
                               onChange={handleChange}
-                              placeholder="Enter X5 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter X5"
+                              className="border border-black w-[10%] text-center"
                           />
                           <input
                               type="number"
                               name="x_6"
                               value={formData.x_6}
                               onChange={handleChange}
-                              placeholder="Enter X6 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter X6"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                       </div>
@@ -266,7 +262,7 @@ function LineChart() {
                               value={formData.y_axis}
                               onChange={handleChange}
                               placeholder="Enter Y axis"
-                              className="border border-black w-[10%]"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -275,8 +271,8 @@ function LineChart() {
                               name="y_1"
                               value={formData.y_1}
                               onChange={handleChange}
-                              placeholder="Enter Y1 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter Y1"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -285,8 +281,8 @@ function LineChart() {
                               name="y_2"
                               value={formData.y_2}
                               onChange={handleChange}
-                              placeholder="Enter Y2 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter Y2"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -295,8 +291,8 @@ function LineChart() {
                               name="y_3"
                               value={formData.y_3}
                               onChange={handleChange}
-                              placeholder="Enter Y3 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter Y3"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -305,8 +301,8 @@ function LineChart() {
                               name="y_4"
                               value={formData.y_4}
                               onChange={handleChange}
-                              placeholder="Enter Y4 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter Y4"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -315,8 +311,8 @@ function LineChart() {
                               name="y_5"
                               value={formData.y_5}
                               onChange={handleChange}
-                              placeholder="Enter Y5 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter Y5"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                           <label>
@@ -325,25 +321,20 @@ function LineChart() {
                               name="y_6"
                               value={formData.y_6}
                               onChange={handleChange}
-                              placeholder="Enter Y6 here"
-                              className="border border-black w-[10%]"
+                              placeholder="Enter Y6"
+                              className="border border-black w-[10%] text-center"
                           />
                           </label>
                       </div>
 
                       {/* Submit Button */}
-                      <button type="submit" className="border border-black p-2 ml-auto mr-auto rounded-xl block">
-                          Submit
+                      <button type="submit" className="border border-black p-2 ml-auto mr-auto rounded-xl block mt-5">
+                          Calculate!
                       </button>
 
                   </form>
               {/* Testing component that sends submittedValue to get parsed then display it! */}
               <DisplayParse submittedValue={submittedValue} />
-            </div>
-
-            <div className="border w-[45%] ml-auto">
-                <h3 className="font-bold">Generated Summary</h3>
-                <p>{generatedSummary[0].summary}</p>
             </div>
         </div>
         <div className="text-center">
