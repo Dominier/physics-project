@@ -29,26 +29,24 @@ ChartJS.register(
 
 function LineChart() {
    /* TABLE INPUT CODE */
-  const [formData, setFormData] = useState({
-    object: '',
-    description: '',
-    
-    x_axis: '',
-    x_1: '',
-    x_2: '',
-    x_3: '',
-    x_4: '',
-    x_5: '',
-    x_6: '',
-
-    y_axis: '',
-    y_1: '',
-    y_2: '',
-    y_3: '',
-    y_4: '',
-    y_5: '',
-    y_6: '',
+   const [formData, setFormData] = useState(() => {
+    const initialState = {
+      object: '',
+      description: '',
+      mass: '',
+      x_axis: '',
+      y_axis: '',
+    };
+  
+    // Generate keys for x_1 to x_28 and y_1 to y_28
+    for (let i = 1; i <= 28; i++) {
+      initialState[`x_${i}`] = '';
+      initialState[`y_${i}`] = '';
+    }
+  
+    return initialState;
   });
+
   const [submittedValue, setSubmittedValue] = useState('');
 
   const handleSubmit = (e) => {
@@ -65,14 +63,10 @@ function LineChart() {
   };
 
   /* GRAPH CODE */
-  const experimentData = [
-    { trial: parseFloat(formData.x_1), time: parseFloat(formData.y_1) },
-    { trial: parseFloat(formData.x_2), time: parseFloat(formData.y_2) },
-    { trial: parseFloat(formData.x_3), time: parseFloat(formData.y_3) },
-    { trial: parseFloat(formData.x_4), time: parseFloat(formData.y_4) },
-    { trial: parseFloat(formData.x_5), time: parseFloat(formData.y_5) },
-    { trial: parseFloat(formData.x_6), time: parseFloat(formData.y_6) },
-  ];
+  const experimentData = Array.from({ length: 7 }, (_, index) => ({
+    trial: parseFloat(formData[`x_${index + 1}`]),
+    time: parseFloat(formData[`y_${index + 1}`]),
+  }));
 
   const data = {
     labels: experimentData.map((data) => data.trial),
@@ -84,7 +78,7 @@ function LineChart() {
         borderWidth: 3,
         pointBorderColor: "#cb0c9f",
         pointBorderWidth: 3,
-        tension: 0,
+        tension: 0.5,
         fill: true,
         backgroundColor: (context) => {
           const ctx = context.chart.ctx;
@@ -147,6 +141,27 @@ function LineChart() {
       },
     };
 
+    const generateInputs = (prefix) => {
+      const inputs = [];
+  
+      for (let i = 1; i <= 7; i++) {
+        inputs.push(
+          <label key={i}>
+            <input
+              type={prefix === "x" ? "text" : "number"}
+              name={`${prefix}_${i}`}
+              value={formData[`${prefix}_${i}`]}
+              onChange={handleChange}
+              placeholder={`Enter ${prefix.toUpperCase()}${i}`}
+              className="border border-black w-[10%] text-center"
+            />
+          </label>
+        );
+      }
+  
+      return inputs;
+    };
+
   return (
     <div>
         <h1 className="font-bold text-3xl text-center mt-10">
@@ -187,6 +202,16 @@ function LineChart() {
                               className="border border-black w-[25%] text-center"
                           />
                         </label>
+                        <label>
+                          <input
+                              type="text"
+                              name="mass"
+                              value={formData.mass}
+                              onChange={handleChange}
+                              placeholder="Mass of Object"
+                              className="border border-black w-[25%] ml-4 text-center"
+                          />
+                        </label>
                       </div>
                       
                       {/* X-Axis Inputs */}
@@ -201,60 +226,11 @@ function LineChart() {
                               className="border border-black w-[10%] text-center"
                           />
                           </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="x_1"
-                              value={formData.x_1}
-                              onChange={handleChange}
-                              placeholder="Enter X1"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          <input
-                              type="number"
-                              name="x_2"
-                              value={formData.x_2}
-                              onChange={handleChange}
-                              placeholder="Enter X2"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          <input
-                              type="number"
-                              name="x_3"
-                              value={formData.x_3}
-                              onChange={handleChange}
-                              placeholder="Enter X3"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          <input
-                              type="number"
-                              name="x_4"
-                              value={formData.x_4}
-                              onChange={handleChange}
-                              placeholder="Enter X4"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          <input
-                              type="number"
-                              name="x_5"
-                              value={formData.x_5}
-                              onChange={handleChange}
-                              placeholder="Enter X5"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          <input
-                              type="number"
-                              name="x_6"
-                              value={formData.x_6}
-                              onChange={handleChange}
-                              placeholder="Enter X6"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
+                          {generateInputs("x")}
                       </div>
                       
                       {/* Y-Axis Inputs */}
-                      <div className="block">
+                      <div className="block mt-3">
                           <label>
                           <input
                               type="text"
@@ -265,66 +241,7 @@ function LineChart() {
                               className="border border-black w-[10%] text-center"
                           />
                           </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="y_1"
-                              value={formData.y_1}
-                              onChange={handleChange}
-                              placeholder="Enter Y1"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="y_2"
-                              value={formData.y_2}
-                              onChange={handleChange}
-                              placeholder="Enter Y2"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="y_3"
-                              value={formData.y_3}
-                              onChange={handleChange}
-                              placeholder="Enter Y3"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="y_4"
-                              value={formData.y_4}
-                              onChange={handleChange}
-                              placeholder="Enter Y4"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="y_5"
-                              value={formData.y_5}
-                              onChange={handleChange}
-                              placeholder="Enter Y5"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
-                          <label>
-                          <input
-                              type="number"
-                              name="y_6"
-                              value={formData.y_6}
-                              onChange={handleChange}
-                              placeholder="Enter Y6"
-                              className="border border-black w-[10%] text-center"
-                          />
-                          </label>
+                          {generateInputs("y")}
                       </div>
 
                       {/* Submit Button */}
