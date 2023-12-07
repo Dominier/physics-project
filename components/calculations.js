@@ -25,6 +25,7 @@ const Calculations = ({ submittedValue }) => {
   const height5 = parseFloat(parsedData.y_5);
   const height6 = parseFloat(parsedData.y_6);
   const height7 = parseFloat(parsedData.y_7);
+  const description = parsedData.description;
 
   const mass = parsedData.mass;
 
@@ -165,7 +166,7 @@ const Calculations = ({ submittedValue }) => {
       <p>Velocity of peak: {velocity_peak}</p>
 
       <div>
-          <button onClick={callOpenAIAPI} className="border border-black rounded-lg p-2 mt-2" >Generate Summary</button>
+          <button onClick={callOpenAIAPI} className="border border-black rounded-lg p-2 mt-2 hover:bg-slate-200" >Generate Summary</button>
       </div>
 
       {report !== "" ? 

@@ -163,7 +163,7 @@ function LineChart() {
     };
 
   return (
-    <div>
+    <div className="">
         <h1 className="font-bold text-3xl text-center mt-10">
             Data Visualizer & Summary + Calculator
         </h1>
@@ -245,7 +245,7 @@ function LineChart() {
                       </div>
 
                       {/* Submit Button */}
-                      <button type="submit" className="border border-black p-2 ml-auto mr-auto rounded-xl block mt-5">
+                      <button type="submit" className="border border-black p-2 ml-auto mr-auto rounded-xl block mt-5 hover:bg-slate-200">
                           Calculate!
                       </button>
 

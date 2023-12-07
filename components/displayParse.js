@@ -8,9 +8,9 @@ const DisplayParse = ({ submittedValue }) => {
     return (
         <div className="pt-5 text-center">
             <div>
-                <h2 className="font-bold">Display Parse Component</h2>
+                <h2 className="font-bold">Description Entered</h2>
                 
-                <p>Parsed description: {parsedData.description}</p>
+                <p>{parsedData.description}</p>
             </div>
         </div>
     );
