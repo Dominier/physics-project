@@ -69,7 +69,7 @@ const Calculations = ({ submittedValue }) => {
       {report !== "" ? 
           <div className="pt-2">
             <h3 className="font-bold">Lab report: <br /> </h3>
-            <ReactMarkdown children={report} />
+            <ReactMarkdown>{report}</ReactMarkdown>
           </div>
           : null    
       }
